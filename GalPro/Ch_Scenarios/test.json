@@ -1,0 +1,62 @@
+[
+  {
+    "type": 0,
+    "pos": -1,
+    "name": "",
+    "talk": "",
+    "selections": "",
+    "img": "59411146_p0.jpg",
+    "bgm": "",
+    "voice": "",
+    "effectVoice": "",
+    "scenario": ""
+  },
+  {
+    "type": 1,
+    "pos": 0,
+    "name": "你大爷",
+    "talk": "测试第一次对话",
+    "selections": "",
+    "img": "60702 #277327.png",
+    "bgm": "",
+    "voice": "",
+    "effectVoice": "",
+    "scenario": ""
+  },
+  {
+    "type": 1,
+    "pos": 2,
+    "name": "你二爷",
+    "talk": "测试第二次对话",
+    "selections": "",
+    "img": "60711_04_01.png",
+    "bgm": "",
+    "voice": "",
+    "effectVoice": "",
+    "scenario": ""
+  },
+  {
+    "type": 1,
+    "pos": 2,
+    "name": "你二爷",
+    "talk": "测试第二次对话",
+    "selections": "测试第一个选项;测试第二个选项;测试第三个选项",
+    "img": "60711_04_01.png",
+    "bgm": "",
+    "voice": "",
+    "effectVoice": "",
+    "scenario": ""
+  },
+  {
+    "type": 2,
+    "pos": -1,
+    "name": "",
+    "talk": "",
+    "selections": "",
+    "img": "",
+    "bgm": "",
+    "voice": "",
+    "effectVoice": "",
+    "scenario": "Ch_Scenarios/s2.json"
+  }
+]

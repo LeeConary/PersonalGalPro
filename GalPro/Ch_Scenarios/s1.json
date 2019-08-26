@@ -1,0 +1,30 @@
+[
+  {
+    "type": 0,
+    "pos": -1,
+    "name": "",
+    "talk": "",
+    "assetPath": "59411146_p0.jpg"
+  },
+  {
+    "type": 1,
+    "pos": 0,
+    "name": "你大爷",
+    "talk": "测试第一次对话",
+    "assetPath": "60702 #277327.png"
+  },
+  {
+    "type": 1,
+    "pos": 2,
+    "name": "你二爷",
+    "talk": "测试第二次对话",
+    "assetPath": "60711_04_01.png"
+  },
+  {
+    "type": 2,
+    "pos": -1,
+    "name": "",
+    "talk": "",
+    "assetPath": "Ch_Scenarios/s1.json"
+  }
+]
