@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126, y: -61}
+  m_AnchoredPosition: {x: 126, y: -56}
   m_SizeDelta: {x: 180.2, y: 55.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2261758812134000452
@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.25005, y: -150.53}
-  m_SizeDelta: {x: 1180.5, y: 319.1}
+  m_AnchoredPosition: {x: -0.2500496, y: -155.04}
+  m_SizeDelta: {x: 1180.5, y: 310.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2261758812768352110
 CanvasRenderer:
@@ -754,14 +754,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.79607844}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f8bfa8dfc1e97534188375fbe2e6b841, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 2261758813721375715}
   - component: {fileID: 2261758813721375713}
   - component: {fileID: 2261758813721375712}
+  - component: {fileID: 1558662077}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -814,7 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9edf88d7df9a546b8ccfc87cfb90fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  text: {fileID: 4900000, guid: bf2d8a9a0612ac54f8e2612791713e46, type: 3}
 --- !u!114 &2261758813721375712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,6 +826,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58680e1dbca20b447b0e54d748cd8e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1558662077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261758813721375714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c518e45d776b7cf448199e98296ed3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2261758813980994471

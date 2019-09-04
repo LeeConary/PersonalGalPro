@@ -33,7 +33,7 @@ public class BaseData
     /// </summary>
     public AssetsInfo assets = new AssetsInfo();
 
-    protected BaseData(int type, string name, string talk, AssetsInfo assets)
+    public BaseData(int type, string name, string talk, AssetsInfo assets)
     {
         this.type = type;
         this.name = name;
@@ -41,7 +41,7 @@ public class BaseData
         this.assets = assets;
     }
 
-    protected BaseData()
+    public BaseData()
     {
     }
 }

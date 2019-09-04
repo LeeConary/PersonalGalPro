@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 4292556579
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: character/seal.asset
+      Dependencies: {}
+    Info_1:
+      Name: character/rita.asset
+      Dependencies: {}
+    Info_2:
+      Name: sprites/bg1.asset
+      Dependencies: {}
+    Info_3:
+      Name: audios/bgm/1.asset
+      Dependencies: {}
+    Info_4:
+      Name: scenarios/das.asset
+      Dependencies: {}

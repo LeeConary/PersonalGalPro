@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 53688665
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 126d85fd93c85796460d9cd010020a52
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Scenarios/te21.json
+Dependencies: []

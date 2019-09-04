@@ -1,1 +1,1 @@
-D:/Projects/233/GalPro/Assets/Resources/Scenarios/test2.json
+D:/Projects/gal/GalPro/Assets/Resources/Scenarios/te2.json

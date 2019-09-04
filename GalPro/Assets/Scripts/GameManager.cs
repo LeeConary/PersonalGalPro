@@ -50,8 +50,7 @@ public class GameManager : MonoBehaviour
         {
             dataInfo = LoadScenarioData.Instance.GetNextScenario();
             HandleData(dataInfo);
-        }
-        
+        }      
     }
     public void OnClick()
     {
@@ -97,32 +96,57 @@ public class GameManager : MonoBehaviour
 
     Sprite LoadPic(string path)
     {
-        FileStream fstream = new FileStream(path, FileMode.Open);
-        fstream.Seek(0, SeekOrigin.Begin);
-        byte[] bytes = new byte[fstream.Length];
-        fstream.Read(bytes, 0, (int)fstream.Length);
-        fstream.Close();
-        fstream.Dispose();
-        fstream = null;
+        //FileStream fstream = new FileStream(path, FileMode.Open);
+        //fstream.Seek(0, SeekOrigin.Begin);
+        //byte[] bytes = new byte[fstream.Length];
+        //fstream.Read(bytes, 0, (int)fstream.Length);
+        //fstream.Close();
+        //fstream.Dispose();
+        //fstream = null;
 
-        int width = Screen.width;
-        int height = Screen.height;
-        Texture2D texture2D = new Texture2D(width, height);
-        texture2D.LoadImage(bytes);
+        //int width = Screen.width;
+        //int height = Screen.height;
+        //Texture2D texture2D = new Texture2D(width, height);
+        //texture2D.LoadImage(bytes);
 
-        Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5F, 0.5F));
-        return sprite;
+        //Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5F, 0.5F));
+        try
+        {
+            Sprite sprite = LoadAssets.Instance.LoadAndGetBundleAssets(path, typeof(Sprite))[0] as Sprite;
+            return sprite;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e.Message);
+            return null;
+        }
+        
     }
 
-    void setImage(Image image, string path)
+    //void setImage(Image image, string path)
+    //{
+    //    if (string.IsNullOrEmpty(path))
+    //    {
+    //        Debug.Log("未找到资源路径");
+    //        return;
+    //    }
+    //    Sprite sprite = LoadPic(path);
+    //    image.sprite = sprite;
+    //}
+
+    void setImage(Image image, Asset asset)
     {
-        if (!File.Exists(path))
+        if (asset == null)
         {
-            Debug.LogError("图片资源加载出错");
+            Debug.Log("未找到资源");
             return;
         }
-        Sprite sprite = LoadPic(path);
-        image.sprite = sprite;
+        if (string.IsNullOrEmpty(asset.path))
+        {
+            Debug.Log("未找到资源路径");
+            return;
+        }
+        image.sprite = GlobalState.GetAsset(asset, typeof(Sprite)) as Sprite;
     }
 
     void setText(Text text, string content)
@@ -130,13 +154,20 @@ public class GameManager : MonoBehaviour
         text.text = content;
     }
 
-    void setVoices(AudioSource source, string assetPath, bool isLoop = false, int loopTime = 0)
+    void setVoice(AudioSource source, Asset asset, bool isLoop = false, int loopTime = 0)
     {
-        if (string.IsNullOrEmpty(assetPath))
+        if (asset == null)
         {
+            Debug.Log("未找到资源");
             return;
         }
-        AudioClip clip = Resources.Load(assetPath) as AudioClip;
+        if (string.IsNullOrEmpty(asset.path))
+        {
+            Debug.Log("未找到资源路径");
+            return;
+        }
+        //AudioClip clip = Resources.Load(assetPath) as AudioClip;
+        AudioClip clip = GlobalState.GetAsset(asset, typeof(AudioClip)) as AudioClip;
         source.clip = clip;
         if (isLoop)
         {
@@ -149,69 +180,69 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void HandleData(CharacterInfo _info)
-    {
-        try
-        {
-            if (_info == null)
-            {
-                return;
-            }
-            if (_info.type == 0)
-            {
-                if (_info.name == "")
-                {
-                    setImage(bg_pic, _info.assetPath);
-                    StartCoroutine(SwitchLoad());
-                }
-                else
-                {
-                    textField.SetActive(true);
-                    setText(ch_name, _info.name);
-                    setText(ch_talk, _info.talk);
-                }
-            }
-            else if (_info.type == 2)
-            {
-                LoadScenarioData.Instance.LoadScript(_info.assetPath);
-                HandleData(info);
-            }
-            else
-            {
-                int pos = int.Parse(_info.pos);
-                textField.SetActive(true);
-                switch (pos)
-                {
-                    case 0:
-                        characters[0].gameObject.SetActive(true);
-                        setImage(characters[0], _info.assetPath);
-                        characters[1].gameObject.SetActive(false);
-                        characters[2].gameObject.SetActive(false);
-                        break;
-                    case 1:
-                        characters[1].gameObject.SetActive(true);
-                        setImage(characters[1], _info.assetPath);
-                        characters[0].gameObject.SetActive(false);
-                        characters[2].gameObject.SetActive(false);
-                        break;
-                    case 2:
-                        characters[2].gameObject.SetActive(true);
-                        setImage(characters[2], _info.assetPath);
-                        characters[0].gameObject.SetActive(false);
-                        characters[1].gameObject.SetActive(false);
-                        break;
-                    default:
-                        break;
-                }
-                setText(ch_name, _info.name);
-                setText(ch_talk, _info.talk);
-            }
-        }
-        catch (System.Exception)
-        {
-            Debug.Log("下一场景");
-        }
-    }
+    //void HandleData(CharacterInfo _info)
+    //{
+    //    try
+    //    {
+    //        if (_info == null)
+    //        {
+    //            return;
+    //        }
+    //        if (_info.type == 0)
+    //        {
+    //            if (_info.name == "")
+    //            {
+    //                setImage(bg_pic, _info.assetPath);
+    //                StartCoroutine(SwitchLoad());
+    //            }
+    //            else
+    //            {
+    //                textField.SetActive(true);
+    //                setText(ch_name, _info.name);
+    //                setText(ch_talk, _info.talk);
+    //            }
+    //        }
+    //        else if (_info.type == 2)
+    //        {
+    //            LoadScenarioData.Instance.LoadScript(_info.assetPath);
+    //            HandleData(info);
+    //        }
+    //        else
+    //        {
+    //            int pos = int.Parse(_info.pos);
+    //            textField.SetActive(true);
+    //            switch (pos)
+    //            {
+    //                case 0:
+    //                    characters[0].gameObject.SetActive(true);
+    //                    setImage(characters[0], _info.assetPath);
+    //                    characters[1].gameObject.SetActive(false);
+    //                    characters[2].gameObject.SetActive(false);
+    //                    break;
+    //                case 1:
+    //                    characters[1].gameObject.SetActive(true);
+    //                    setImage(characters[1], _info.assetPath);
+    //                    characters[0].gameObject.SetActive(false);
+    //                    characters[2].gameObject.SetActive(false);
+    //                    break;
+    //                case 2:
+    //                    characters[2].gameObject.SetActive(true);
+    //                    setImage(characters[2], _info.assetPath);
+    //                    characters[0].gameObject.SetActive(false);
+    //                    characters[1].gameObject.SetActive(false);
+    //                    break;
+    //                default:
+    //                    break;
+    //            }
+    //            setText(ch_name, _info.name);
+    //            setText(ch_talk, _info.talk);
+    //        }
+    //    }
+    //    catch (System.Exception)
+    //    {
+    //        Debug.Log("下一场景");
+    //    }
+    //}
 
     void HandleData(BaseData _info)
     {
@@ -226,7 +257,7 @@ public class GameManager : MonoBehaviour
                 if (string.IsNullOrEmpty(_info.talk))
                 {
                     setImage(bg_pic, _info.assets.img);
-                    setVoices(bgm, _info.assets.bgm);
+                    setVoice(bgm, _info.assets.bgm);
                     bg_pic.color = new Color(bg_pic.color.r, bg_pic.color.g, bg_pic.color.b, 0);
                     bg_pic.DOFade(1, 1f);
                     StartCoroutine(SwitchLoad());
@@ -234,62 +265,60 @@ public class GameManager : MonoBehaviour
             }
             else if (_info.type == 2)
             {
-                characters[2].gameObject.SetActive(false);
-                characters[0].gameObject.SetActive(false);
-                characters[1].gameObject.SetActive(false);
-                textField.SetActive(false);
-                bg_pic.DOFade(0, 1f);
-                if (LoadScenarioData.Instance.LoadScript(_info.assets.scenario))
-                {
-                    HandleData(dataInfo);
-                }
+                StartCoroutine("SwitchNext", _info);       
             }
             else
             {
-                setVoices(bgm, _info.assets.bgm);
-                setVoices(bgm, _info.assets.effectVoice);
-                setVoices(bgm, _info.assets.voice);
-
-                textField.SetActive(true);
-                if (_info.pos == -1)
-                {
-                    setText(ch_name, _info.name);
-                    setText(ch_talk, _info.talk);
-                }
-                else
-                {
-                    switch (_info.pos)
-                    {
-                        case 0:
-                            characters[0].gameObject.SetActive(true);
-                            setImage(characters[0], _info.assets.img);
-                            characters[1].gameObject.SetActive(false);
-                            characters[2].gameObject.SetActive(false);
-                            break;
-                        case 1:
-                            characters[1].gameObject.SetActive(true);
-                            setImage(characters[1], _info.assets.img);
-                            characters[0].gameObject.SetActive(false);
-                            characters[2].gameObject.SetActive(false);
-                            break;
-                        case 2:
-                            characters[2].gameObject.SetActive(true);
-                            setImage(characters[2], _info.assets.img);
-                            characters[0].gameObject.SetActive(false);
-                            characters[1].gameObject.SetActive(false);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                setText(ch_name, _info.name);
-                setText(ch_talk, _info.talk);
+                CharactersTalk(_info);
             }
         }
-        catch (System.Exception)
+        catch (System.Exception e)
         {
-            Debug.Log("下一场景");
+            Debug.LogError(e.Message);
+            Debug.Log("错误");
         }
+    }
+
+    void CharactersTalk(BaseData _info)
+    {
+        setVoice(bgm, _info.assets.bgm);
+        setVoice(bgm, _info.assets.effectVoice);
+        setVoice(bgm, _info.assets.voice);
+
+        textField.SetActive(true);
+        if (_info.pos == -1)
+        {
+            setText(ch_name, _info.name);
+            setText(ch_talk, _info.talk);
+        }
+        else
+        {
+            switch (_info.pos)
+            {
+                case 0:
+                    characters[0].gameObject.SetActive(true);
+                    setImage(characters[0], _info.assets.img);
+                    characters[1].gameObject.SetActive(false);
+                    characters[2].gameObject.SetActive(false);
+                    break;
+                case 1:
+                    characters[1].gameObject.SetActive(true);
+                    setImage(characters[1], _info.assets.img);
+                    characters[0].gameObject.SetActive(false);
+                    characters[2].gameObject.SetActive(false);
+                    break;
+                case 2:
+                    characters[2].gameObject.SetActive(true);
+                    setImage(characters[2], _info.assets.img);
+                    characters[0].gameObject.SetActive(false);
+                    characters[1].gameObject.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+        setText(ch_name, _info.name);
+        setText(ch_talk, _info.talk);
     }
     IEnumerator SwitchLoad()
     {
@@ -300,5 +329,22 @@ public class GameManager : MonoBehaviour
         ControlUI.SetActive(false);
         yield return new WaitForSeconds(1f);
         ControlUI.SetActive(true);
+    }
+
+    IEnumerator SwitchNext(BaseData _info)
+    {
+        characters[2].gameObject.SetActive(false);
+        characters[0].gameObject.SetActive(false);
+        characters[1].gameObject.SetActive(false);
+        textField.SetActive(false);
+        ControlUI.SetActive(false);
+        bg_pic.DOFade(0, 1f);
+        yield return new WaitForSeconds(1.5f);
+        if (LoadScenarioData.Instance.LoadScript(_info.assets.scenario.path))
+        {
+            dataInfo = LoadScenarioData.Instance.GetNextScenario();
+            HandleData(dataInfo);
+        }
+
     }
 }

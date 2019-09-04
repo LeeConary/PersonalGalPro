@@ -31,7 +31,7 @@ public class LoadScenarioData:MonoBehaviour
     List<CharacterInfo> infoList;
 
     List<BaseData> fDatas;
-    public bool LoadScript(TextAsset path)
+    public bool LoadScript(TextAsset textAsset)
     {
 #if txt
         index = 0;
@@ -44,7 +44,7 @@ public class LoadScenarioData:MonoBehaviour
         stream.Close();
 #elif json
         #region 读取json文件
-        fDatas = UtilMethods<BaseData>.JsonToEntity(path.text, true);
+        fDatas = UtilMethods<BaseData>.JsonToEntity(textAsset.text, true);
         return true;
         #endregion
 #elif test
@@ -64,15 +64,14 @@ public class LoadScenarioData:MonoBehaviour
         }
         stream.Close();
 #elif json
-        #region 读取json文件
-        if (!File.Exists(path))
+        TextAsset text = LoadAssets.Instance.LoadAndGetBundleAssets(path, typeof(TextAsset))[0] as TextAsset;
+        if (text == null)
         {
             Debug.LogError("未找到剧本资源");
             return false;
         }
-        fDatas = UtilMethods<BaseData>.JsonToEntity(path);
+        LoadScript(text);
         return true;
-        #endregion
 #elif test
 
 #endif

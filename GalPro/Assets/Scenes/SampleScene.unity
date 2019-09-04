@@ -194,6 +194,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1558662075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2261758813721375714, guid: 77d8b382db1592b46b7381ee310dbaba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1687691968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1558662077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558662075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c518e45d776b7cf448199e98296ed3e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1687691968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315,7 +333,7 @@ PrefabInstance:
         type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 4900000, guid: 2a854d0821c44fe4aa4c31c52ad2ebb1, type: 3}
+      objectReference: {fileID: 4900000, guid: bf2d8a9a0612ac54f8e2612791713e46, type: 3}
     - target: {fileID: 2261758813696126747, guid: 77d8b382db1592b46b7381ee310dbaba,
         type: 3}
       propertyPath: m_Sprite

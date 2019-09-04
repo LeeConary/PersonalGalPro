@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 3037184311
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: audio/1.unity3d
+      Dependencies: {}
+    Info_1:
+      Name: seal.unity3d
+      Dependencies: {}
